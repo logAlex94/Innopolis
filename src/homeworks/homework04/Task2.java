@@ -16,6 +16,7 @@ public class Task2 {
             counter++;
         }
         System.out.println(counter);
-        
+
+
     }
 }

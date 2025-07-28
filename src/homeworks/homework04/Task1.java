@@ -13,4 +13,5 @@ public class Task1 {
             System.out.println(str.charAt(str.indexOf(input) - 1));
         }
     }
+
 }

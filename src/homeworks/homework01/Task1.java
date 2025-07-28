@@ -10,5 +10,7 @@ public class Task1 {
         int number4 = 4;
         String str = "   ";
         System.out.println(number1 + str + number2 + str + number3 + str + number4);
+
+
     }
 }
