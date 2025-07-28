@@ -17,5 +17,6 @@ public class Task2 {
         System.out.println("Расстояние двух целых чисел:" + Math.abs(first - second) );
         System.out.println("Максимальное целое число: " + Math.max(first, second) );
         System.out.println("Минимальное целое число: " + Math.min(first, second) );
+
     }
 }
