@@ -6,11 +6,11 @@ import java.util.Objects;
 public class Person {
     private String name;
 
-    private Long money;
+    private Double money;
 
-    private Product[] products = new Product[10];
+    private Product[] products = new Product[0];
 
-    public Person(String name, Long money) {
+    public Person(String name, Double money) {
         this.setMoney(money);
         this.setName(name);
     }
@@ -18,40 +18,61 @@ public class Person {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         if (!name.isEmpty()) {
             this.name = name;
+        } else {
+            System.out.println("Имя не может быть пустым");
         }
     }
 
-    public Long getMoney() {
+    public Double getMoney() {
         return money;
     }
-    public void setMoney(Long money) {
+
+    public void setMoney(Double money) {
         if (money >= 0) {
-        this.money = money;
+            this.money = money;
+        }
+        System.out.println("Деньги не могут быть отрицательными");
     }
 
     public Product[] getProducts() {
         return products;
     }
-    public void addProduct(Product products) {
+
+    public void addProduct(Product product) {
+        if (this.money >= product.getPrice()) {
+            products = Arrays.copyOf(products, products.length + 1);
+            products[products.length - 1] = product;
+            this.money = this.money - product.getPrice();
+            System.out.println(this.name + " купил " + product.getName());
+        } else {
+            System.out.println(this.name + " не может себе позволить купить " + product.getName());
+        }
     }
 
-@Override
-public int hashCode() {
-    return Objects.hash(name, money, Arrays.hashCode(products));
-}
 
-@Override
-public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() !=o.getClass()) return false;
-    Person person = (Person) o;
-    return Objects.equals(name,person.name) && Objects.equals(money, person.money) && Objects.equals(products, person.products);
-}
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, money, Arrays.hashCode(products));
+    }
 
-@Override
-public String toString() {
-    return name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(money, person.money) && Objects.equals(products, person.products);
+    }
+
+    @Override
+    public String toString() {
+        if (products.length == 0) {
+            return name + " - Ничего не куплено";
+        } else {
+            return name + " - " + Arrays.toString(products);
+        }
+    }
 }

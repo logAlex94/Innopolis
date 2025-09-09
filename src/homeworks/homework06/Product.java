@@ -9,11 +9,19 @@ public class Product {
     private Double price;
 
     public void setName(String name) {
-        this.name = name;
+        if (!name.isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Имя продукта не может быть пустым");
+        }
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            System.out.println("Стоимость продукта не может быть отрицательной");
+        }
     }
 
     public String getName() {
@@ -38,14 +46,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return name;
     }
 
     public Product(String name, Double price) {
-        this.name = name;
-        this.price = price;
+        this.setName(name);
+        this.setPrice(price);
     }
 }
