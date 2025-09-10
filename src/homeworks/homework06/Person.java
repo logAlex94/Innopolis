@@ -34,8 +34,9 @@ public class Person {
     public void setMoney(Double money) {
         if (money >= 0) {
             this.money = money;
+        } else {
+            System.out.println("Деньги не могут быть отрицательными");
         }
-        System.out.println("Деньги не могут быть отрицательными");
     }
 
     public Product[] getProducts() {
